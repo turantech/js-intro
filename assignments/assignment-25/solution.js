@@ -81,19 +81,44 @@ function isValidQueryString(qs) {
     return true;
 }
 
+function isValidPath(path) {
+    if (path.includes("//")) {
+        return false;
+    }
+
+    for (let i = 0; i < path.length; i++) {
+        const char = path[i];
+        if (char === "/") {
+            continue;
+        }
+        if (!isAlphaNumeric(char)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 function isValidUrl(url) {
     const parts = url.split(".");
-    const splittedByQuestionMark = url.split("?");
     const length = parts.length;
     const firstPart = parts[0];
     const lastPart = parts[length - 1];
+    const splittedByQuestionMark = lastPart.split("?");
 
-    // Validates if url has a correct number of parts. It can be  3 or 2.
+    // Validates if url has a correct number of parts. It can be  2 or max 3
     if (length !== 3 && length !== 2) {
         return false;
     }
 
-    // Validates if url has only one question mark which is important to identify query strin part of URL
+    // Validates the url path that does not have query string
+    if (splittedByQuestionMark.length === 1) {
+        if (!isValidPath(splittedByQuestionMark[0])) {
+            return false;
+        }
+    }
+
+    // Validates if url has max ? question mark which is important to identify query string  of URL
 
     if (splittedByQuestionMark.length > 2) {
         return false;
@@ -103,6 +128,16 @@ function isValidUrl(url) {
 
     if (splittedByQuestionMark.length === 2) {
         if (!isValidQueryString(splittedByQuestionMark[1])) {
+            return false;
+        }
+
+        if (!isValidPath(splittedByQuestionMark[0])) {
+            return false;
+        }
+        if (
+            splittedByQuestionMark[1] === "" ||
+            splittedByQuestionMark[0].endsWith("/")
+        ) {
             return false;
         }
     }
@@ -131,43 +166,37 @@ function isValidUrl(url) {
     return true;
 }
 
+// Valid URLs
+console.log(isValidUrl("https://www.example.com") === true);
+console.log(isValidUrl("https://www.example.com/") === true);
+console.log(isValidUrl("http://www.example.com") === true);
+console.log(isValidUrl("www.example.com") === true);
+console.log(isValidUrl("example.com") === true);
+console.log(isValidUrl("example.com/users") === true);
+console.log(isValidUrl("example.com/users/1234") === true);
+console.log(isValidUrl("example.com/users/1234/") === true);
+console.log(isValidUrl("example.com/users/1234?mode=edit") === true);
 console.log(
-    isValidUrl("example.co/users/123/profile?tab=info&mode=edit") === true
+    isValidUrl("example.com/search?query=javascript&sort=date") === true
 );
 console.log(
-    isValidUrl("https://example.io/users/123/profile?tab=info&mode=edit") ===
-        true
+    isValidUrl("example.com/users/123/profile?tab=info&mode=edit") === true
 );
-console.log(
-    isValidUrl(
-        "https://www.exampl@e.io/users/123/profile?tab=info&mode=edit"
-    ) === false
-);
-console.log(
-    isValidUrl(
-        "http://www.example?.io/users/123/profile?tab=info&mode=edit"
-    ) === false
-);
-console.log(isValidUrl("exa?mple.com") === false);
-console.log(
-    isValidUrl("example@.co/users/123/profile?tab=info&mode=edit") === false
-);
+console.log(isValidUrl("example.com?key=value") === true);
+console.log(isValidUrl("example.com/path?key=value") === true);
+console.log(isValidUrl("example.com/path?key=value&another=true") === true);
+console.log(isValidUrl("example.com/path/subpath?key=value") === true);
 
-console.log(
-    isValidUrl("htt://www.example.io/users/123/profile?tab=info&mode=edit") ===
-        false
-);
-console.log(
-    isValidUrl(
-        "https://blog.exampl@e.io/users/123/profile?tab=info&mode=edit"
-    ) === false
-);
-
-console.log(
-    isValidUrl(
-        "http://wwwb.example.io/users/123/profile?tab=info&mode=edit"
-    ) === false
-);
-console.log(
-    isValidUrl("//.exampl@e.io/users/123/profile?tab=info&mode=edit") === false
-);
+console.log("----");
+// Invalid URLs
+console.log(isValidUrl("https://www.example.xyz") === false);
+console.log(isValidUrl("ftp://example.com") === false);
+console.log(isValidUrl("www2.example.com") === false);
+console.log(isValidUrl("blog.example.com") === false);
+console.log(isValidUrl("www.example.com/users_/123") === false);
+console.log(isValidUrl("example.com/search?query_string=javascript") === false);
+console.log(isValidUrl("example.com?product=123&category_id=456") === false);
+console.log(isValidUrl("example.xyz") === false);
+console.log(isValidUrl("example.com/?hello=hi") === false);
+console.log(isValidUrl("example.com//test") === false);
+console.log(isValidUrl("example.com/users?name=John&Doe") === false);
