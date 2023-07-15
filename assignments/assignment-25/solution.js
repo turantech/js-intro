@@ -1,4 +1,5 @@
 function isAlphaNumeric(string) {
+    if (!string) return false;
     for (let i = 0; i < string.length; i++) {
         const char = string[i];
         if (
@@ -11,43 +12,22 @@ function isAlphaNumeric(string) {
 
     return true;
 }
-function isValidUrl(url) {
-    const tlds = ["com", "io", "app", "dev", "ai", "tech", "co"];
-    const parts = url.split(".");
-    const lastPart = parts[parts.length - 1];
-
-    // Validates if url has a correct number of parts. It can be  3 or 2.
-    if (parts.length !== 3 && parts.length !== 2) {
-        return false;
-    }
-
-    // Validates domain and protocol syntax name when url does not have a sub domain
+// It finds the first char index of domain name when URL does not have sub domain.
+function getDomainNameStartIdx(firstPart) {
     let domainNameStartIdx;
-    if (parts.length === 2) {
-        if (parts[0].startsWith("https://")) {
-            domainNameStartIdx = 8;
-        } else if (parts[0].startsWith("http://")) {
-            domainNameStartIdx = 7;
-        } else {
-            domainNameStartIdx = 0;
-        }
-        if (!isAlphaNumeric(parts[0].slice(domainNameStartIdx))) {
-            return false;
-        }
-        // Validates domain and protocol syntax name when url  has a sub domain
+    if (firstPart.startsWith("https://")) {
+        domainNameStartIdx = 8;
+    } else if (firstPart.startsWith("http://")) {
+        domainNameStartIdx = 7;
     } else {
-        if (!isAlphaNumeric(parts[1])) {
-            return false;
-        }
-        if (
-            parts[0] !== "https://www" &&
-            parts[0] !== "http://www" &&
-            parts[0] !== "www"
-        ) {
-            return false;
-        }
+        domainNameStartIdx = 0;
     }
 
+    return domainNameStartIdx;
+}
+
+function isValidTld(lastPart) {
+    const tlds = ["com", "io", "app", "dev", "ai", "tech", "co"];
     // Validates it has only allowed tlds
     const firstQuestionMarkIdx = lastPart.indexOf("?");
     const firstSlashIdx = lastPart.indexOf("/");
@@ -64,6 +44,88 @@ function isValidUrl(url) {
         if (!tlds.includes(lastPart)) {
             return false;
         }
+    }
+
+    return true;
+}
+
+function isValidProtocolAndSubdomain(string) {
+    if (
+        string !== "https://www" &&
+        string !== "http://www" &&
+        string !== "www"
+    ) {
+        return false;
+    }
+
+    return true;
+}
+
+function isValidDomainName(domain) {
+    return isAlphaNumeric(domain);
+}
+function isValidQSPair(pair) {
+    let parts = pair.split("=");
+    if (parts.length > 2) {
+        return false;
+    }
+    return isAlphaNumeric(parts[0]) && isAlphaNumeric(parts[1]);
+}
+
+function isValidQueryString(qs) {
+    if (!qs) return false;
+    const pairs = qs.split("&");
+    for (let i = 0; i < pairs.length; i++) {
+        if (!isValidQSPair(pairs[i])) return false;
+    }
+    return true;
+}
+
+function isValidUrl(url) {
+    const parts = url.split(".");
+    const splittedByQuestionMark = url.split("?");
+    const length = parts.length;
+    const firstPart = parts[0];
+    const lastPart = parts[length - 1];
+
+    // Validates if url has a correct number of parts. It can be  3 or 2.
+    if (length !== 3 && length !== 2) {
+        return false;
+    }
+
+    // Validates if url has only one question mark which is important to identify query strin part of URL
+
+    if (splittedByQuestionMark.length > 2) {
+        return false;
+    }
+
+    //Validates if url has valid query string
+
+    if (splittedByQuestionMark.length === 2) {
+        if (!isValidQueryString(splittedByQuestionMark[1])) {
+            return false;
+        }
+    }
+
+    // Validates domain and protocol syntax name when url does not have a sub domain
+    if (length === 2) {
+        let domainNameStartIdx = getDomainNameStartIdx(firstPart);
+        if (!isValidDomainName(firstPart.slice(domainNameStartIdx))) {
+            return false;
+        }
+    }
+    // Validates domain and protocol syntax name when url  has a sub domain
+    if (length === 3) {
+        if (!isValidDomainName(parts[1])) {
+            return false;
+        }
+        if (!isValidProtocolAndSubdomain(firstPart)) {
+            return false;
+        }
+    }
+
+    if (!isValidTld(lastPart)) {
+        return false;
     }
 
     return true;
