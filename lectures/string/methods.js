@@ -58,3 +58,36 @@ console.log(animal === animal.toLowerCase()); // false
 
 var anotherAnimal = "elephant";
 console.log(anotherAnimal.toUpperCase());
+
+// 9. replace();
+
+console.log("--------------");
+
+var address = "2365 E 13th street, Brooklyn, NY";
+var newAddress = address.replace("Brooklyn", "Queens");
+console.log(newAddress);
+console.log(address);
+
+var paragraph = `I live at ${address}. I love Brooklyn Brooklyn Brooklyn`;
+console.log(paragraph);
+var newParagraphReplace = paragraph.replace("Brooklyn", "Queens");
+console.log(newParagraphReplace);
+
+var newParagraphReplaceAll = paragraph.replaceAll("Brooklyn", "Queens");
+console.log(newParagraphReplaceAll);
+
+// 10.  slice();
+var lastName = "Temirov";
+var newLastName = lastName.slice(0, 4 + 1);
+console.log(newLastName);
+
+var helloWorld = "Hello, World!";
+// ("ello, World!"); How can we
+// var newHelloWorld = helloWorld.slice(1, helloWorld.length);
+// console.log(newHelloWorld);
+
+// var newHelloWorld = helloWorld.slice(1);
+// console.log(newHelloWorld);
+
+var newHelloWorld = helloWorld.slice(0, 20);
+console.log(newHelloWorld);
