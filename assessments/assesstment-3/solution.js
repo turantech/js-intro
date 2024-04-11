@@ -43,7 +43,6 @@ var initial = firstNameInitial + lastNameInitial;
 /* ---- 4 ---- */
 // 1
 var alphabet = "abcdefghijklmnopqrstuvwxyz";
-// var firstLetterOfMyName = "a";
 var nameFirstLetter = "z";
 var nameFirstLetterIdx = alphabet.indexOf(nameFirstLetter);
 
@@ -59,6 +58,15 @@ var alphabetWithoutMyNameFirstCharacter2 = alphabet.replace(
     ""
 );
 // console.log(alphabetWithoutMyNameFirstCharacter2);
+
+/* ---- 5 ---- */
+var completeSentence = "The quick brown fox jumps over the lazy dog.";
+var randomChar = "x";
+var missingRandomCharString;
+var randomCharIdx = completeSentence.indexOf(randomChar);
+missingRandomCharString = completeSentence
+    .slice(0, randomCharIdx)
+    .concat(completeSentence.slice(randomCharIdx + 1));
 
 /* ---- 6 ---- */
 
