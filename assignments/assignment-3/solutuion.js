@@ -1,4 +1,4 @@
-// ---- Temprature Convertor ---- //
+/* ---- Temprature Convertor ---- */
 
 // Converting Fahrenheit to Celsius
 var fahrenheit = 68; // Assigning a Fahrenheit temperature to convert
@@ -20,7 +20,7 @@ console.log(
         " degrees Fahrenheit."
 );
 
-// ---- Interest Calculator ---- //
+/* ---- Interest Calculator ---- */
 
 var principal = 1000; // Example principal amount in dollars
 var rate = 5; // Annual interest rate in percent
@@ -28,7 +28,7 @@ var time = 3; // Time in years
 var interest = (principal * rate * time) / 100; // Simple interest formula
 console.log("The interest is $" + interest + ".");
 
-// ---- Swapping Values ---- //
+/* ---- Swapping Values ---- */
 
 var a = 4;
 var b = 5;
@@ -46,7 +46,7 @@ b = a - b; // b becomes 4 (9 - 5)
 a = a - b; // a becomes 5 (9 - 4)
 console.log("After swapping, a is " + a + ", and b is " + b + ".");
 
-// ---- Implementing Mathematical Formulas ---- //
+/* ---- Implementing Mathematical Formulas ---- */
 
 // Area of a Circle
 var radius = 5; // Example value for the radius of the circle
@@ -71,7 +71,7 @@ console.log(
     "The perimeter (circumference) of the circle is " + perimeter + "."
 );
 
-// ---- Speed Converter ---- //
+/* ---- Speed Converter ---- */
 
 var milesPerHour = 60; // Example speed in miles per hour
 var kilometersPerHour = milesPerHour * 1.60934; // Conversion formula
@@ -79,13 +79,13 @@ console.log(
     "The speed in kilometers per hour is " + kilometersPerHour + " km/h."
 );
 
-// ---- Volume Converter ---- //
+/* ---- Volume Converter ---- */
 
 var liters = 10; // Example volume in liters
 var gallons = liters * 0.264172; // Conversion formula
 console.log("The volume in gallons is " + gallons + " gallons.");
 
-// ---- Compound Interest Converter ---- //
+/* ---- Compound Interest Converter ---- */
 
 var principal = 1000; // Example principal amount in dollars
 var annualRate = 0.05; // Annual interest rate in decimal
