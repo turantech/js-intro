@@ -1,38 +1,29 @@
-// Generate a random number of seconds between 0 and 86400.
-var totalSeconds = Math.floor(Math.random() * 86400);
+/*---- 1 ----*/
+let random1to10 = Math.floor(Math.random() * 10) + 1;
 
-// Calculate hours, minutes, and seconds.
-var hours = Math.floor(totalSeconds / 3600);
-var remainingSeconds = totalSeconds % 3600;
-var minutes = Math.floor(remainingSeconds / 60);
-var seconds = remainingSeconds % 60;
+/*---- 2 ----*/
+let random1to100 = Math.floor(Math.random() * 100) + 1;
 
-// Format hours, minutes, and seconds to have two digits.
-var formattedHours = hours,
-    formattedMinutus = minutes,
-    formattedSeconds = seconds;
+/*---- 3 ----*/
+let random50to100 = Math.floor(Math.random() * 51) + 50;
 
-if (hours < 10) {
-    formattedHours = "0" + hours;
-}
+/*---- 4 ----*/
+let randomMinus10to10 = Math.floor(Math.random() * 21) - 10;
 
-if (minutes < 10) {
-    formattedMinutus = "0" + minutes;
-}
+/*---- 5 ----*/
+let randomMinus100to100 = Math.floor(Math.random() * 201) - 100;
 
-if (seconds < 10) {
-    formattedSeconds = "0" + seconds;
-}
+/*---- 6 ----*/
+let random1000to2000 = Math.floor(Math.random() * 1001) + 1000;
 
-// Print the timestamp to the console.
-var timestamp = `${formattedHours}:${formattedMinutus}:${formattedSeconds}`;
-console.log(timestamp);
+/*---- 7 ----*/
+let randomMinus1000to0 = Math.floor(Math.random() * 1001) - 1000;
 
-// Print a greeting based on the hour.
-if (hours < 12) {
-    console.log("Good morning!");
-} else if (hours < 17) {
-    console.log("Good afternoon!");
-} else {
-    console.log("Good evening!");
-}
+/*---- 8 ----*/
+let random1to1000 = Math.floor(Math.random() * 1000) + 1;
+
+/*---- 9 ----*/
+let randomMinus500to500 = Math.floor(Math.random() * 1001) - 500;
+
+/*---- 10 ----*/
+let random10000to20000 = Math.floor(Math.random() * 10001) + 10000;

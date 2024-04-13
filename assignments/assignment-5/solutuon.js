@@ -1,16 +1,41 @@
-// Variables declaration
-var name = "John";
-var age = 30;
-var city = "New York";
-var profession = "software engineer";
-var hobby1 = "reading books";
-var hobby2 = "playing the guitar";
-var favoriteFood = "pizza";
-var favoriteColor = "blue";
-var dreamDestination = "Tokyo";
-var favoriteSeason = "autumn";
+var part1 = "The greatest glory in";
+var part2 = "living lies not in";
+var part3 = "never falling, but in";
+var part4 = "rising every time";
+var part5 = "we fall.";
+var author = " - Nelson Mandela";
 
-// Paragraph assembly using template literals
-console.log(
-    `Hello, my name is ${name} and I am ${age} years old. I live in ${city}, where I work as a ${profession}. In my free time, I enjoy ${hobby1} and ${hobby2}. My favorite food is ${favoriteFood} and my favorite color is ${favoriteColor}. My dream is to one day visit ${dreamDestination}. My favorite season of the year is ${favoriteSeason} because of the beautiful changing colors of the leaves.`
+/* ---- Template Literal Method ---- */
+
+var quoteTemplateLiteral = `${part1} ${part2} ${part3} ${part4} ${part5}${author}`;
+console.log(quoteTemplateLiteral);
+
+/* ---- Concat Method ---- */
+
+var quoteConcat = part1.concat(
+    " ",
+    part2,
+    " ",
+    part3,
+    " ",
+    part4,
+    " ",
+    part5,
+    author
 );
+console.log(quoteConcat);
+
+/* ---- + Operator ---- */
+var quotePlusOperator =
+    part1 + " " + part2 + " " + part3 + " " + part4 + " " + part5 + author;
+console.log(quotePlusOperator);
+
+/* ---- += Operator ---- */
+
+var quotePlusEqualsOperator = part1;
+quotePlusEqualsOperator += " " + part2;
+quotePlusEqualsOperator += " " + part3;
+quotePlusEqualsOperator += " " + part4;
+quotePlusEqualsOperator += " " + part5;
+quotePlusEqualsOperator += author;
+console.log(quotePlusEqualsOperator);

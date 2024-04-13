@@ -1,21 +1,12 @@
-var name1 = "john doe";
-var name2 = "Jane smith";
-var name3 = "bob Johnson";
+var name = "John";
+var age = 30;
+var cityOfResidence = "New York";
+var profession = "software engineer";
+var hobby1 = "reading books";
+var hobby2 = "playing the guitar";
+var favoriteFood = "pizza";
+var favoriteColor = "blue";
+var dreamTravelDestination = "Tokyo";
+var favoriteSeason = "autumn";
 
-// For name1
-var spaceIndex1 = name1.indexOf(" ");
-var firstNameInitial1 = name1[0];
-var lastNameInitial1 = name1[spaceIndex1 + 1];
-console.log((firstNameInitial1 + lastNameInitial1).toUpperCase());
-
-// For name2
-var spaceIndex2 = name2.indexOf(" ");
-var firstNameInitial2 = name2[0];
-var lastNameInitial2 = name2[spaceIndex2 + 1];
-console.log((firstNameInitial2 + lastNameInitial2).toUpperCase());
-
-// For name3
-var spaceIndex3 = name3.indexOf(" ");
-var firstNameInitial3 = name3[0];
-var lastNameInitial3 = name3[spaceIndex3 + 1];
-console.log((firstNameInitial3 + lastNameInitial3).toUpperCase());
+var paragraph = `Hello, my name is ${name} and I am ${age} years old. I live in ${cityOfResidence}, where I work as a ${profession}. In my free time, I enjoy ${hobby1} and ${hobby2}. My favorite food is ${favoriteFood} and my favorite color is ${favoriteColor}. My dream is to one day visit ${dreamTravelDestination}. My favorite season of the year is ${favoriteSeason} because of the beautiful changing colors of the leaves.`;
