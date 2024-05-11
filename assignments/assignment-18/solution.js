@@ -1,113 +1,34 @@
-// 1. String Index Multiplier
-function stringIndexMultiplier(arr) {
-    var sum = 0;
-    for (var i = 0; i < arr.length; i++) {
-        var length = arr[i].length;
-        var product = length * i;
-        sum += product;
+// Create a function called countDigitsSumDivisibleByThree  that takes two positive numbers, min and max as argument. that finds how many numbers between them have a sum of their digits that is divisible by 3.
+
+function sumUpDigits(number) {
+    if (number < 10) {
+        return number;
     }
+
+    var stringNumber = number.toString();
+    var sum = 0;
+    sum += parseInt(stringNumber[0]) + parseInt(stringNumber[1]);
+
+    if (stringNumber.length === 3) {
+        sum += parseInt(stringNumber[2]);
+    }
+
     return sum;
 }
 
-// 2. Divisibility Filter
-function divisibilityFilter(arr) {
-    var result = [];
-    for (var i = 0; i < arr.length; i++) {
-        var divisibleBy3 = arr[i] % 3 === 0;
-        var divisibleBy5 = arr[i] % 5 === 0;
+sumUpDigits(12); // 3
+sumUpDigits(999); // 27
+sumUpDigits(1); // 1
 
-        if ((divisibleBy3 || divisibleBy5) && !(divisibleBy3 && divisibleBy5)) {
-            result.push(arr[i]);
-        }
-    }
-    return result;
-}
+function countDigitsSumDivisibleByThree(num1, num2) {
+    var counter = 0;
 
-// 3. Single Digit Sum
-function singleDigitSum(arr) {
-    var sum = 0;
-    for (var i = 0; i < arr.length; i++) {
-        var absValue = Math.abs(arr[i]);
-        if (absValue < 10) {
-            sum += arr[i];
-        }
-    }
-    return sum;
-}
-
-// 4. Binary Counter
-function binaryCounter(arr) {
-    var zeroes = 0;
-    var ones = 0;
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[i] === 0) {
-            zeroes++;
-        } else if (arr[i] === 1) {
-            ones++;
-        }
-    }
-    return [zeroes, ones];
-}
-
-// 5. Unique String Filter
-function uniqueStringFilter(arr) {
-    var uniqueStrings = [];
-    var lowerCaseStrings = [];
-
-    for (var i = 0; i < arr.length; i++) {
-        var lowerCaseStr = arr[i].toLowerCase();
-        if (!lowerCaseStrings.includes(lowerCaseStr)) {
-            uniqueStrings.push(arr[i]);
-            lowerCaseStrings.push(lowerCaseStr);
+    for (var i = num1; i <= num2; i++) {
+        var sum = sumUpDigits(i);
+        if (sum % 3 === 0) {
+            counter++;
         }
     }
 
-    return uniqueStrings;
-}
-
-// 6. Odd Number Summation
-function oddNumberSum(arr) {
-    var sum = 0;
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[i] % 2 !== 0) {
-            sum += arr[i];
-        }
-    }
-    return sum;
-}
-
-// 7. Reverse Array
-function reverseString(arr) {
-    var result = [];
-    for (var i = arr.length - 1; i >= 0; i--) {
-        result.push(arr[i]);
-    }
-    return result;
-}
-
-// 8. Factorial Calculator
-function calculateFactorial(n) {
-    var factorial = 1;
-    for (var i = n; i > 1; i--) {
-        factorial *= i;
-    }
-    return factorial;
-}
-
-// 9. Array Element Multiplier
-function arrayElementMultiplier(arr) {
-    var result = [];
-    for (var i = 0; i < arr.length; i++) {
-        result.push(arr[i] * 2);
-    }
-    return result;
-}
-
-// 10. Even Index Summation
-function evenIndexSum(arr) {
-    var sum = 0;
-    for (var i = 0; i < arr.length; i += 2) {
-        sum += arr[i];
-    }
-    return sum;
+    return counter;
 }
